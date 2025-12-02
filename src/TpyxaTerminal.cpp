@@ -10,7 +10,7 @@
 TpyxaTerminal::TpyxaTerminal(uint16_t port):_telnetServer(port), _port(port){
     for(int i=0;i<MAXofTELNET;i++) { _ClientType[i] = CLIENT_TYPE_DISCONNECTED; _ClientTime[i]=millis(); }
 	_debugSerial = false;
-	_nCurrentClient = -1; // Текущий клиент не определен
+	_nCurrentClient = -1; // Текущий клиент пока не определен
 	//UserCommandCallback = nullptr; // Нулевой указатель на функцию доп команд
 }
 void TpyxaTerminal::debugON(){ _debugSerial = true; }
