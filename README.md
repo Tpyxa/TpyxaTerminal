@@ -7,4 +7,4 @@ Arduino library for telnet connections
 Предназначена для ESP32, но возможно будет работать на ESP8266 и других (не тестировалось)
 # Лицензия
 MIT — свободно используйте, модифицируйте, распространяйте.
-См. файл LICENSE.
+См. файл [LICENSE](https://github.com/Tpyxa/TpyxaTerminal/blob/main/LICENSE)
