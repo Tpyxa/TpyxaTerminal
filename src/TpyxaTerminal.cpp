@@ -13,6 +13,7 @@ TpyxaTerminal::TpyxaTerminal(uint16_t port):_telnetServer(port), _port(port){
 	_nCurrentClient = -1; // Текущий клиент пока не определен
 	//UserCommandCallback = nullptr; // Нулевой указатель на функцию доп команд
 }
+// Включение отладки через КОМ-Порт
 void TpyxaTerminal::debugON(){ _debugSerial = true; }
 void TpyxaTerminal::debugOFF(){ _debugSerial = false; }
 		

@@ -26,7 +26,9 @@
 #define WiFi_LAST_ACK    9
 #define WiFi_TIME_WAIT   10
 
+// Время принудительного отключения клиента
 #define CLIENT_TIMEOUT 180000
+
 #define WRITE_TIMEOUT 1000
 
 class TpyxaTerminal : public Print {
