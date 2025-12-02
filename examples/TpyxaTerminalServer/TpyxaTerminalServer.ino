@@ -12,6 +12,7 @@ const char *ssid = "TERMINAL";
 const char *password = "12345678";
 
 TpyxaTerminal ttServer; // Создаём объект
+unsigned long t=0;
 
 int myUserCommand(String command){
     if (command.startsWith("BLACK")){
@@ -61,4 +62,12 @@ void setup() {
  
 void loop() {  
   ttServer.task_handler(true); // Обработчик телнета
+
+  // Для примера с текстовым терминалом - отсылка сообщения каждые 10 секунд
+  if((millis()-t)>10000)
+  {
+        t=millis();
+        //ttServer.toText(); // Устанавливается текущий вывод на текстовый терминал
+        //ttServer.print("Посылка на текстовый терминал#");
+  }
 }

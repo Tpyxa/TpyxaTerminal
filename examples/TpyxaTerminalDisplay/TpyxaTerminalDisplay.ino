@@ -14,7 +14,7 @@
 const char* ssid = "TERMINAL";
 const char* password = "12345678";
 
-// IP-адрес и порт для подключения
+// IP-адрес и порт сервера для подключения
 const char* host = "192.168.4.1";
 const int port = 23;
 

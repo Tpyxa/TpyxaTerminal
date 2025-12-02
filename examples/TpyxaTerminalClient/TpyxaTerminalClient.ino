@@ -28,7 +28,7 @@ void setup() {
 
   pinMode(KEY1, INPUT_PULLUP); pinMode(KEY2, INPUT_PULLUP); pinMode(KEY3, INPUT_PULLUP);
 
-  // Соединяемся по вайвай к серверу
+  // Соединяемся по вайфай к серверу
   Serial.print("\nConnecting to "); Serial.println(ssid);
   WiFi.begin(ssid, password);
   while (WiFi.status() != WL_CONNECTED) delay(500);
