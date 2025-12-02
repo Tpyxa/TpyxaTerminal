@@ -28,7 +28,7 @@
 
 // Время принудительного отключения клиента
 #define CLIENT_TIMEOUT 180000
-
+// Время таймаута отправки 1 символа
 #define WRITE_TIMEOUT 1000
 
 class TpyxaTerminal : public Print {
