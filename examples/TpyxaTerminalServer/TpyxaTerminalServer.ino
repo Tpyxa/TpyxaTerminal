@@ -35,7 +35,7 @@ int myUserCommand(String command){
     }
     // Пример команды с параметром, например MOVE 100
     else if (command.startsWith("MOVE")){
-        int m = command.substring(4).toInt(); // С символа 4 идет нужное нам число
+        int m = command.substring(5).toInt(); // С символа  идет нужное нам число
         // Тут нужная вам обработка
     }
     else
