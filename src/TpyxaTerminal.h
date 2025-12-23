@@ -38,12 +38,15 @@ class TpyxaTerminal : public Print {
 		void begin();
 		void toDisplay(char *text);
 		void toDisplay(const char *text);
+		void toAll(char *text);
+		void toAll(const char *text);
 		void toBase(char *text);
 		void toBase(const char *text);
-		// Устанавливает текущий вывод на соотв клиента
+		// Устанавливает текущий вывод на 1 соотв клиента
 		int toText();
 		int toDisplay();
 		int toBase();
+
 		
 		
 		//void terminal();

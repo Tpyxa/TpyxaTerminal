@@ -102,10 +102,8 @@ int TpyxaTerminal::toText(){
     for(int i=0;i<MAXofTELNET;i++)
         if (_ClientTelnet[i] && _ClientTelnet[i].connected() && _ClientType[i]==CLIENT_TYPE_TEXT) // Если есть клиент и он соединен и явл текст терм
 		{
-			SetClient(i);
-			kt++;
+			SetClient(i); return 1;
 		}
-	if(kt>0) return 1;
 	SetClient(-1); return 0;
 }
 void TpyxaTerminal::toBase(char *text){
@@ -128,15 +126,32 @@ void TpyxaTerminal::toBase(const char *text){
 			println(text);
 		}
 }
+void TpyxaTerminal::toAll(char *text){
+    //text[strlen(text)] = '#'; text[strlen(text)+1] = 0; 
+    for(int i=0;i<MAXofTELNET;i++)
+        if (_ClientTelnet[i] && _ClientTelnet[i].connected()) // Если есть клиент и он соединен и явл текст терм
+		{
+            //_ClientTelnet[i].println(text);
+			SetClient(i);
+			println(text);
+		}
+}
+void TpyxaTerminal::toAll(const char *text){
+    //text[strlen(text)] = '#'; text[strlen(text)+1] = 0; 
+    for(int i=0;i<MAXofTELNET;i++)
+        if (_ClientTelnet[i] && _ClientTelnet[i].connected()) // Если есть клиент и он соединен и явл текст терм
+		{
+            //_ClientTelnet[i].println(text);
+			SetClient(i);
+			println(text);
+		}
+}
 int TpyxaTerminal::toBase(){
-	int kt=0;
     for(int i=0;i<MAXofTELNET;i++)
         if (_ClientTelnet[i] && _ClientTelnet[i].connected() && _ClientType[i]==CLIENT_TYPE_BASE) // Если есть клиент и он соединен и явл текст терм
 		{
-			SetClient(i);
-			kt++;
+			SetClient(i); return 1;
 		}
-	if(kt>0) return 1;
 	SetClient(-1); return 0;
 }
 
