@@ -55,7 +55,7 @@ void setup() {
   Serial.print("AP IP: ");  Serial.println(WiFi.softAPIP());
   Serial.println("WiFi done");
   
-  // ttServer.debugON(); // Отладка телнета (на Serial)
+   ttServer.debugON(); // Отладка телнета (на Serial)
   ttServer.begin(); // Старт телнет-сервера
   ttServer.SetCommandCallback(myUserCommand); // Регистрация функции-обработчика команд
 }

@@ -50,8 +50,8 @@ class TpyxaTerminal : public Print {
 		
 		
 		//void terminal();
-		void task_handler();
-		void task_handler(bool exeCom);
+		bool task_handler();
+		bool task_handler(bool exeCom);
 		
 		//terminalClear
 		void clearBuffers();
@@ -79,6 +79,7 @@ class TpyxaTerminal : public Print {
 
 		
 	private:
+		int _defMesage = 0; // По умолчанию сообщения отключены (для нашей разработки)
 		int _roleClient=-1; // Роль клиента
 		int _processing=0; // Обрабатывает ли клиент команды
 		void _SendRole(int role);

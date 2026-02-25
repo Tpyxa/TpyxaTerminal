@@ -63,7 +63,7 @@ void TpyxaTerminal::_acceptNewClient(){
 void TpyxaTerminal::_addClient(int i, WiFiClient &newC){
 	//Serial.print("New client "); Serial.println(i);
 	_ClientTelnet[i]=newC;
-	_ClientTelnet[i].printf("Add Client-%d#", i);
+	if(_defMesage) _ClientTelnet[i].printf("Add Client-%d#", i);
 	if(_debugSerial)
 	{
 		Serial.printf("Add Client-%d IP: %s\n", i, IPAddress(_ClientTelnet[i].remoteIP()).toString().c_str());
@@ -188,7 +188,7 @@ void TpyxaTerminal::_processCommand(String command) {
   }
   else if (command.startsWith("PING")) {
     //_ClientTelnet[_nCurrentClient].println("OK#");
-	println("OK#");
+	if(_defMesage) println("OK#");
     //toDisplay("PING OK#");
   }
   else
@@ -204,12 +204,13 @@ void TpyxaTerminal::_processCommand(String command) {
 }
 
 // Бывш terminal
-void TpyxaTerminal::task_handler(){ task_handler(false); }
-void TpyxaTerminal::task_handler(bool exeCom)
+bool TpyxaTerminal::task_handler(){ return(task_handler(false)); }
+bool TpyxaTerminal::task_handler(bool exeCom)
 {
+	bool ava = false;
 	if(client)
 	{
-		if(!Connect(_host, _port)) return; // Проверка соединения и переконнект
+		if(!Connect(_host, _port)) return false; // Проверка соединения и переконнект
 		char localbuf[2];
 		
 		//if(_ClientSolo.available() > 0) // Есть данные на входе
@@ -221,7 +222,7 @@ void TpyxaTerminal::task_handler(bool exeCom)
 			if(_ClientSolo.available() > 0) // Есть данные на входе
 			{
 				String command = _ClientSolo.readStringUntil('#');  // Чтение команды до символа
-				if(_UserCommandCallback(command)) return; // Обработка пользовательских комманд через указатель
+				if(_UserCommandCallback(command)) return true; // Обработка пользовательских комманд через указатель
 			}
 		}
 		else // Нет функции - игнорирование данных (например пульт)
@@ -244,11 +245,13 @@ void TpyxaTerminal::task_handler(bool exeCom)
 				SetClient(i);
 				if(command.length()>3) _processCommand(command);  // Обработка команды
 				_ClientTime[i]=millis();
+				
+				ava = true;
 			}
 		}
 		_freeDisconnectedSlots();
 	}
-
+	return(ava);
 }
 void TpyxaTerminal::_freeDisconnectedSlots(){
     // Освобождение клиентских слотов
@@ -448,11 +451,11 @@ void TpyxaTerminal::_SendRole(int role){
 	{
 		case CLIENT_TYPE_TEXT:
 			if(_debugSerial) Serial.printf("set ROLE TEXT\n");
-			println("ID:TEXT");
+			if(_defMesage) println("ID:TEXT");
 			break;
 		case CLIENT_TYPE_BASE:
 			if(_debugSerial) Serial.printf("set ROLE BASE\n");
-			println("ID:BASE");
+			if(_defMesage) println("ID:BASE");
 			break;
 		default:
 		if(_debugSerial) Serial.printf("Error: Unknown ROLE\n");
