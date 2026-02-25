@@ -167,7 +167,7 @@ void TpyxaTerminal::_processCommand(String command) {
   if (command.startsWith("ID:TEXT")){
      _ClientType[_nCurrentClient] = CLIENT_TYPE_TEXT; // Переключаем тип клиента
      //_ClientTelnet[_nCurrentClient].println("TextTerm registered#");
-	 println("TextTerm registered#");
+	 if(_defMesage)println("TextTerm registered#");
 
     // Текстовый терминал может быть только один (пока)
     for(int i=0;i<MAXofTELNET;i++)
@@ -178,7 +178,7 @@ void TpyxaTerminal::_processCommand(String command) {
   else if (command.startsWith("ID:BASE")){
      _ClientType[_nCurrentClient] = CLIENT_TYPE_BASE; // Переключаем тип клиента
      //_ClientTelnet[_nCurrentClient].println("BASE registered#");
-	 println("BASE registered#");
+	 if(_defMesage) println("BASE registered#");
 
     // База может быть только одна
     for(int i=0;i<MAXofTELNET;i++)
